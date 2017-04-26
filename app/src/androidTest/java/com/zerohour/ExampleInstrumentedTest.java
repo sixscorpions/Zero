@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.zerohour", appContext.getPackageName());
+        assertEquals("com.zero_hour", appContext.getPackageName());
     }
 }

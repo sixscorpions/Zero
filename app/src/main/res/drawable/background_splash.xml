@@ -6,7 +6,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/zerohour" />
+            android:src="@drawable/zero_hour" />
     </item>
 
 </layer-list>
