@@ -141,13 +141,15 @@
             android:background="@color/colorPrimary" />
 
         <LinearLayout
+            android:id="@+id/ll_first_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/_10dp"
-            android:paddingStart="@dimen/_10dp">
+            android:paddingStart="@dimen/_10dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_first_contact"
@@ -170,13 +172,15 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_second_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/_10dp"
-            android:paddingStart="@dimen/_10dp">
+            android:paddingStart="@dimen/_10dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_second_contact"
@@ -194,6 +198,16 @@
                 android:layout_marginStart="@dimen/_50dp"
                 android:gravity="center"
                 android:text="@string/remove_image"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_25sp" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_50dp"
+                android:gravity="center"
+                android:text="@string/more_image"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_25sp" />
         </LinearLayout>
