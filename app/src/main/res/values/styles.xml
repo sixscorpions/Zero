@@ -26,4 +26,35 @@
         <item name="android:layout_height">25dp</item>
     </style>
 
+
+    <!-- Base Layout theme. -->
+    <style name="match_style">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+
+    <!-- Width Match Parent theme. -->
+    <style name="match_wrap_style">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrap_style">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- TextInputLayout  theme. -->
+    <style name="et_screen_txt_input_layout_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/edit_text_color</item>
+        <item name="colorControlActivated">@color/edit_text_color</item>
+        <item name="colorControlHighlight">@color/edit_text_color</item>
+        <item name="colorAccent">@color/edit_text_color</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+    </style>
+
 </resources>

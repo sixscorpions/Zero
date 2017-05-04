@@ -21,5 +21,16 @@
 
     <string name="party_invite">Party Invite</string>
     <string name="event_invite">Event Invite</string>
+    <string name="numbers">0123456789</string>
+    <string name="mobile_number_hint">Mobile Number</string>
+    <string name="date_of_party_hint">Date of party</string>
+    <string name="time_for_party_hint">Time for party</string>
+    <string name="petition">Petition</string>
+    <string name="submit">Submit</string>
 
+    <string name="contact_image">&#xE0BA;</string>
+    <string name="add_image">&#xE148;</string>
+    <string name="date_image">&#xE916;</string>
+    <string name="time_image">&#xE192;</string>
+    <string name="remove_image">&#xE15D;</string>
 </resources>
