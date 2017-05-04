@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Zerohour</string>
+
+    <string name="nav_item_invite">Invite</string>
+    <string name="nav_item_maid_status">Maid Status</string>
+    <string name="nav_item_alien_car">Alien Car</string>
+    <string name="nav_item_notice_board">Notice Board</string>
+    <string name="nav_item_complaints">Complaints</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_invite</item>
+        <item>@string/nav_item_maid_status</item>
+        <item>@string/nav_item_alien_car</item>
+        <item>@string/nav_item_notice_board</item>
+        <item>@string/nav_item_complaints</item>
+    </string-array>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
