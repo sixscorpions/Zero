@@ -1,17 +1,23 @@
 package com.zerohour.fragments;
 
 
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zerohour.MainActivity;
 import com.zerohour.R;
+import com.zerohour.adapters.PrivateSelectedContactsAdapter;
+import com.zerohour.interfaces.IUpdateDialogData;
 import com.zerohour.utils.Utility;
 
 import java.util.ArrayList;
@@ -23,7 +29,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PartyInviteFragment extends Fragment {
+public class PartyInviteFragment extends Fragment implements IUpdateDialogData {
 
     private MainActivity mParent;
     private View view;
@@ -58,10 +64,17 @@ public class PartyInviteFragment extends Fragment {
     TextView tv_more;
 
     private ArrayList<String> numbersSelected;
+    public static Dialog mDialog;
+    private static IUpdateDialogData iUpdateDialogData;
+
+    public static IUpdateDialogData getInstance() {
+        return iUpdateDialogData;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        iUpdateDialogData = this;
         mParent = (MainActivity) getActivity();
     }
 
@@ -88,26 +101,69 @@ public class PartyInviteFragment extends Fragment {
     void addNumber() {
         if (isValidFields()) {
             numbersSelected.add(etMobileNumber.getText().toString());
-            if (numbersSelected != null && numbersSelected.size() == 1) {
-                etMobileNumber.setText("");
-                ll_first_contact.setVisibility(View.VISIBLE);
-                tv_first_contact.setText("" + numbersSelected.get(0));
-            } else if (numbersSelected != null && numbersSelected.size() == 2) {
-                etMobileNumber.setText("");
-                ll_first_contact.setVisibility(View.VISIBLE);
-                tv_first_contact.setText("" + numbersSelected.get(0));
-                ll_second_contact.setVisibility(View.VISIBLE);
-                tv_second_contact.setText("" + numbersSelected.get(1));
-                tv_more.setVisibility(View.GONE);
-            } else {
-                etMobileNumber.setText("");
+            updateData();
+        }
+    }
+
+    private void updateData() {
+        if (numbersSelected != null && numbersSelected.size() == 1) {
+            etMobileNumber.setText("");
+            ll_first_contact.setVisibility(View.VISIBLE);
+            tv_first_contact.setText("" + numbersSelected.get(0));
+            ll_second_contact.setVisibility(View.GONE);
+        } else if (numbersSelected != null && numbersSelected.size() == 2) {
+            etMobileNumber.setText("");
+            ll_first_contact.setVisibility(View.VISIBLE);
+            tv_first_contact.setText("" + numbersSelected.get(0));
+            ll_second_contact.setVisibility(View.VISIBLE);
+            tv_second_contact.setText("" + numbersSelected.get(1));
+            tv_more.setVisibility(View.GONE);
+        } else {
+            etMobileNumber.setText("");
+            if (numbersSelected != null && numbersSelected.size() > 0) {
                 ll_first_contact.setVisibility(View.VISIBLE);
                 tv_first_contact.setText("" + numbersSelected.get(0));
                 ll_second_contact.setVisibility(View.VISIBLE);
                 tv_second_contact.setText("" + numbersSelected.get(1));
                 tv_more.setVisibility(View.VISIBLE);
+            } else {
+                ll_first_contact.setVisibility(View.GONE);
+                ll_second_contact.setVisibility(View.GONE);
+                tv_more.setVisibility(View.GONE);
             }
         }
+    }
+
+
+    @OnClick(R.id.tv_first_contact_remove)
+    void removeFirstContact() {
+        numbersSelected.remove(0);
+        updateData();
+    }
+
+    @OnClick(R.id.tv_first_second_remove)
+    void removeSecondContact() {
+        numbersSelected.remove(1);
+        updateData();
+    }
+
+    @OnClick(R.id.tv_more)
+    void showMoreDialog() {
+        mDialog = new Dialog(mParent);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(R.layout.private_contacts_dialog);
+        //dialogShare.getWindow().setGravity(Gravity.BOTTOM);
+        mDialog.setCanceledOnTouchOutside(true);
+        //dialogShare.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mDialog.getWindow().setBackgroundDrawable(new
+                ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        ListView listView = (ListView) mDialog.findViewById(R.id.lv_contacts);
+        PrivateSelectedContactsAdapter privateSelectedContactsAdapter = new PrivateSelectedContactsAdapter(mParent, numbersSelected);
+        listView.setAdapter(privateSelectedContactsAdapter);
+
+        mDialog.show();
+
     }
 
     private boolean isValidFields() {
@@ -120,5 +176,11 @@ public class PartyInviteFragment extends Fragment {
             isValid = false;
         }
         return isValid;
+    }
+
+    @Override
+    public void updatedData(ArrayList<String> mContacts) {
+        numbersSelected = mContacts;
+        updateData();
     }
 }

@@ -27,6 +27,7 @@
     <string name="time_for_party_hint">Time for party</string>
     <string name="petition">Petition</string>
     <string name="submit">Submit</string>
+    <string name="selected_contacts_list">Selected Contacts list</string>
 
     <string name="contact_image">&#xE0BA;</string>
     <string name="add_image">&#xE148;</string>
