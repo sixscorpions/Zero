@@ -272,7 +272,7 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
         } else if (et_time.getText().toString().length() <= 0) {
             Utility.showToastMessage(mParent, "Please select time");
             isValid = false;
-        } else if (et_reason.getText().toString().length() <= 0) {
+        } else if (Utility.isValueNullOrEmpty(et_reason.getText().toString())) {
             Utility.showToastMessage(mParent, "Please enter purpose");
             isValid = false;
         }

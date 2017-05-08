@@ -65,7 +65,7 @@ public class PartyInviteResultFragment extends Fragment {
     }
 
     @OnClick(R.id.btn_send_invitation)
-    void sendInvation() {
+    void sendInvitation() {
         Utility.showToastMessage(mParent, "All the messages are sent");
     }
 }

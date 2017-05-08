@@ -1,12 +1,92 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zerohour.fragments.EventInviteFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_date"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:digits="@string/numbers"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical"
+                android:hint="@string/date_of_party_hint"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_10dp"
+                android:text="@string/date_image"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_25sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1px"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:background="@color/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_reason"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/purpose"
+                android:maxLines="4"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1px"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:background="@color/colorPrimary" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="@dimen/_50dp"
+        android:text="@string/submit"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_18sp" />
+</LinearLayout>
