@@ -25,9 +25,12 @@
     <string name="mobile_number_hint">Mobile Number</string>
     <string name="date_of_party_hint">Date of party</string>
     <string name="time_for_party_hint">Time for party</string>
+    <string name="place_of_the_party_hint">Place of the party</string>
     <string name="petition">Petition</string>
     <string name="submit">Submit</string>
+    <string name="purpose">Purpose</string>
     <string name="selected_contacts_list">Selected Contacts list</string>
+    <string name="current_location">Current location</string>
 
     <string name="contact_image">&#xE0BA;</string>
     <string name="add_image">&#xE148;</string>
@@ -35,4 +38,10 @@
     <string name="time_image">&#xE192;</string>
     <string name="remove_image">&#xE15D;</string>
     <string name="more_image">&#xE619;</string>
+    <string name="place_of_marker">&#xE55F;</string>
+    <string name="cake_image">&#xE7E9;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="message">Chakravarthi Inviting you for</string>
+    <string name="send_invitation">Send Invitation</string>
 </resources>

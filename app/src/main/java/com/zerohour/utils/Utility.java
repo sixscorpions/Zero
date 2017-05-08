@@ -2,7 +2,14 @@ package com.zerohour.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
+
+import com.zerohour.R;
 
 /**
  * Created by Shankar on 5/4/2017.
@@ -66,5 +73,22 @@ public class Utility {
             e.printStackTrace();
         }
     }
+
+    public static void navigateDashBoardFragment(Fragment fragment,
+                                                 String tag, Bundle bundle, FragmentActivity fragmentActivity) {
+        FragmentManager fragmentManager = fragmentActivity
+                .getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager
+                .beginTransaction();
+        /*fragmentTransaction.setCustomAnimations(R.anim.slide_left_right,
+                R.anim.fade_out);*/
+        if (bundle != null) {
+            fragment.setArguments(bundle);
+        }
+        fragmentTransaction.replace(R.id.container_body, fragment, tag);
+        fragmentTransaction.addToBackStack(tag);
+        fragmentTransaction.commit();
+    }
+
 
 }

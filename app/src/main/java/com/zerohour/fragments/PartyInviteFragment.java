@@ -1,7 +1,9 @@
 package com.zerohour.fragments;
 
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -12,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.zerohour.MainActivity;
 import com.zerohour.R;
@@ -26,6 +30,7 @@ import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,8 +70,20 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
     @BindView(R.id.tv_first_second_remove)
     TextView tv_first_second_remove;
 
+    @BindView(R.id.tv_current_location_image)
+    TextView tv_current_location_image;
+    @BindView(R.id.tv_et_reason_image)
+    TextView tv_et_reason_image;
+
     @BindView(R.id.tv_more)
     TextView tv_more;
+
+    @BindView(R.id.et_date)
+    EditText et_date;
+    @BindView(R.id.et_time)
+    EditText et_time;
+    @BindView(R.id.et_reason)
+    EditText et_reason;
 
     private ArrayList<String> numbersSelected;
     public static Dialog mDialog;
@@ -105,6 +122,8 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
         tv_time.setTypeface(Utility.getMaterialIconsRegular(mParent));
         tv_first_contact_remove.setTypeface(Utility.getMaterialIconsRegular(mParent));
         tv_first_second_remove.setTypeface(Utility.getMaterialIconsRegular(mParent));
+        tv_current_location_image.setTypeface(Utility.getMaterialIconsRegular(mParent));
+        tv_et_reason_image.setTypeface(Utility.getMaterialIconsRegular(mParent));
         tv_more.setTypeface(Utility.getMaterialIconsRegular(mParent));
     }
 
@@ -166,6 +185,37 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
         mParent.startActivityForResult(pickContactIntent, Constants.RESULT_PICK_CONTACT);
     }
 
+    @OnClick({R.id.tv_date, R.id.et_date})
+    void dateSelection() {
+        Calendar c = Calendar.getInstance();
+        DatePickerDialog dpd = new DatePickerDialog(mParent, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                int month = monthOfYear + 1;
+                et_date.setText("" + year + "-" + month + "-" + dayOfMonth);
+
+            }
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        dpd.show();
+
+    }
+
+    @OnClick({R.id.tv_time, R.id.et_time})
+    void timeSelection() {
+        Calendar c = Calendar.getInstance();
+        TimePickerDialog timePickerDialog = new TimePickerDialog(mParent, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                et_time.setText(selectedHour + ":" + selectedMinute);
+            }
+        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true);
+        timePickerDialog.show();
+    }
+
+
     @OnClick(R.id.tv_more)
     void showMoreDialog() {
         mDialog = new Dialog(mParent);
@@ -185,6 +235,20 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
 
     }
 
+    @OnClick(R.id.btn_submit)
+    void submitData() {
+        if (isValidForSms()) {
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.PURPOSE, et_reason.getText().toString());
+            bundle.putString(Constants.DATE, et_date.getText().toString());
+            bundle.putString(Constants.TIME, et_time.getText().toString());
+            bundle.putString(Constants.LOCATION, "");
+            bundle.putStringArrayList(Constants.CONTACTS, numbersSelected);
+            Utility.navigateDashBoardFragment(new PartyInviteResultFragment(),
+                    PartyInviteResultFragment.TAG, bundle, mParent);
+        }
+    }
+
     private boolean isValidFields() {
         boolean isValid = true;
         if (Utility.isValueNullOrEmpty(etMobileNumber.getText().toString())) {
@@ -192,6 +256,24 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
             isValid = false;
         } else if (etMobileNumber.getText().toString().length() < 10) {
             Utility.showToastMessage(mParent, "Please enter valid mobile number");
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    private boolean isValidForSms() {
+        boolean isValid = true;
+        if (numbersSelected != null & numbersSelected.size() <= 0) {
+            Utility.showToastMessage(mParent, "Please add at least one number");
+            isValid = false;
+        } else if (et_date.getText().toString().length() <= 0) {
+            Utility.showToastMessage(mParent, "Please select date");
+            isValid = false;
+        } else if (et_time.getText().toString().length() <= 0) {
+            Utility.showToastMessage(mParent, "Please select time");
+            isValid = false;
+        } else if (et_reason.getText().toString().length() <= 0) {
+            Utility.showToastMessage(mParent, "Please enter purpose");
             isValid = false;
         }
         return isValid;

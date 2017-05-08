@@ -43,6 +43,9 @@ public class InviteFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (view != null) {
+            return view;
+        }
         view = inflater.inflate(R.layout.fragment_invite, container, false);
         ButterKnife.bind(this, view);
         initUI();

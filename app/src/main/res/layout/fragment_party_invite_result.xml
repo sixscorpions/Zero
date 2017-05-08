@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10dp"
+        android:text="@string/message"
+        android:textSize="@dimen/_17sp" />
+
+    <Button
+        android:id="@+id/btn_send_invitation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:minHeight="@dimen/_50dp"
+        android:text="@string/send_invitation"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_18sp" />
+
+</RelativeLayout>
