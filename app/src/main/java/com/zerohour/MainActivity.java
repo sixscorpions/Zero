@@ -1,6 +1,10 @@
 package com.zerohour;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +17,9 @@ import com.zerohour.fragments.AlienCarFragment;
 import com.zerohour.fragments.InviteFragment;
 import com.zerohour.fragments.MaidStatusFragment;
 import com.zerohour.fragments.NoticeBoardFragment;
+import com.zerohour.fragments.PartyInviteFragment;
+import com.zerohour.utils.Constants;
+import com.zerohour.utils.Utility;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -85,4 +92,31 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         displayView(position);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case Constants.RESULT_PICK_CONTACT:
+                    contactPicked(data);
+                    break;
+            }
+        } else {
+            Utility.showToastMessage(this, "Failed to pick contact");
+        }
+    }
+
+    private void contactPicked(Intent data) {
+        Uri contactUri = data.getData();
+        String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
+        Cursor cursor = MainActivity.this.getContentResolver().query(
+                contactUri, projection, null, null, null);
+        cursor.moveToFirst();
+        int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+        String number = cursor.getString(column);
+        number = number.replace(" ", "");
+        number = number.replace("-", "");
+        number = number.replace("+91", "");
+        //Utility.showToastMessage(this, "" + number);
+        PartyInviteFragment.getInstanceData().updatedData(number);
+    }
 }

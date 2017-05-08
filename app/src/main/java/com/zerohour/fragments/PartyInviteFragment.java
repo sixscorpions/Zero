@@ -2,8 +2,11 @@ package com.zerohour.fragments;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,8 @@ import com.zerohour.MainActivity;
 import com.zerohour.R;
 import com.zerohour.adapters.PrivateSelectedContactsAdapter;
 import com.zerohour.interfaces.IUpdateDialogData;
+import com.zerohour.interfaces.IUpdateNumberData;
+import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import java.util.ArrayList;
@@ -29,7 +34,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PartyInviteFragment extends Fragment implements IUpdateDialogData {
+public class PartyInviteFragment extends Fragment implements IUpdateDialogData, IUpdateNumberData {
 
     private MainActivity mParent;
     private View view;
@@ -66,15 +71,21 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData {
     private ArrayList<String> numbersSelected;
     public static Dialog mDialog;
     private static IUpdateDialogData iUpdateDialogData;
+    private static IUpdateNumberData iUpdateNumberData;
 
     public static IUpdateDialogData getInstance() {
         return iUpdateDialogData;
+    }
+
+    public static IUpdateNumberData getInstanceData() {
+        return iUpdateNumberData;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         iUpdateDialogData = this;
+        iUpdateNumberData = this;
         mParent = (MainActivity) getActivity();
     }
 
@@ -147,6 +158,14 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData {
         updateData();
     }
 
+    @OnClick(R.id.tv_contacts_image)
+    void pickContact() {
+        Intent pickContactIntent = new Intent(Intent.ACTION_PICK,
+                Uri.parse("content://contacts"));
+        pickContactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        mParent.startActivityForResult(pickContactIntent, Constants.RESULT_PICK_CONTACT);
+    }
+
     @OnClick(R.id.tv_more)
     void showMoreDialog() {
         mDialog = new Dialog(mParent);
@@ -181,6 +200,18 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData {
     @Override
     public void updatedData(ArrayList<String> mContacts) {
         numbersSelected = mContacts;
+        updateData();
+    }
+
+    @Override
+    public void updatedData(String mContact) {
+        if (numbersSelected == null) {
+            numbersSelected = new ArrayList<>();
+        }
+        if (!numbersSelected.contains(mContact))
+            numbersSelected.add(mContact);
+        else
+            Utility.showToastMessage(mParent, "Number Already added");
         updateData();
     }
 }
