@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
  */
 public class InviteFragment extends Fragment {
 
+    public static final String TAG = InviteFragment.class.getSimpleName();
     private MainActivity mParent;
     private View view;
 
@@ -43,9 +44,6 @@ public class InviteFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (view != null) {
-            return view;
-        }
         view = inflater.inflate(R.layout.fragment_invite, container, false);
         ButterKnife.bind(this, view);
         initUI();
@@ -65,7 +63,7 @@ public class InviteFragment extends Fragment {
     }
 
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 

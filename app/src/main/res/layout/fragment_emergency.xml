@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_panic_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/panic_image"
+        android:textColor="@color/red_color"
+        android:textSize="@dimen/_150sp" />
+
+    <TextView
+        android:id="@+id/tv_panic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/panic"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_17sp" />
+
+
+    <TextView
+        android:id="@+id/tv_fire_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:text="@string/fire_image"
+        android:textColor="@color/red_color"
+        android:textSize="@dimen/_150sp" />
+
+    <TextView
+        android:id="@+id/tv_fire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fire"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_17sp" />
+
+</LinearLayout>

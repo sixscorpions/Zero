@@ -6,6 +6,7 @@
     <string name="nav_item_alien_car">Alien Car</string>
     <string name="nav_item_notice_board">Notice Board</string>
     <string name="nav_item_complaints">Complaints</string>
+    <string name="nav_item_emergency">Emergency</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
@@ -14,6 +15,7 @@
         <item>@string/nav_item_alien_car</item>
         <item>@string/nav_item_notice_board</item>
         <item>@string/nav_item_complaints</item>
+        <item>@string/nav_item_emergency</item>
     </string-array>
 
     <string name="drawer_open">Open</string>
@@ -42,6 +44,9 @@
     <string name="cake_image">&#xE7E9;</string>
     <string name="face_image">&#xE87C;</string>
     <string name="call_image">&#xE0B1;</string>
+    .
+    <string name="panic_image">&#xf188;</string>
+    <string name="fire_image">&#xf06d;</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="message">Chakravarthi Inviting you for</string>
@@ -61,6 +66,11 @@
     <string name="blocking_car_number">Blocking car number</string>
     <string name="get_details">Get Details</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_category">Select Category</string>
+    <string name="write_your_complaint">Write your complaint</string>
+    <string name="drop_complaint">Drop complaint</string>
+
+    <string name="panic">Panic</string>
+    <string name="fire">Fire/Gas</string>
+
 </resources>

@@ -7,7 +7,9 @@
     <dimen name="_20dp">20dp</dimen>
     <dimen name="_30dp">30dp</dimen>
     <dimen name="_40dp">40dp</dimen>
+    <dimen name="_45dp">45dp</dimen>
     <dimen name="_50dp">50dp</dimen>
+    <dimen name="_100dp">100dp</dimen>
 
     <dimen name="_15sp">15sp</dimen>
     <dimen name="_16sp">16sp</dimen>

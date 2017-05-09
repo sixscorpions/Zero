@@ -6,6 +6,7 @@
 
 
     <color name="edit_text_color">#7dffffff</color>
-    <color name="green_color">#7D23F55F</color>
+    <color name="green_color">#00ff00</color>
+    <color name="red_color">#ff0000</color>
 
 </resources>

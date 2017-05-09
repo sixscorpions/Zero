@@ -41,6 +41,14 @@ public class Utility {
     }
 
     /**
+     * FONT AWESOME WEB FONT TYPEFACE
+     * This method is used to set the icons in font awesome
+     **/
+    public static Typeface getFontAwesomeWebFont(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/fontawesome-webfont.ttf");
+    }
+
+    /**
      * Check the value is null or empty
      *
      * @param value Value of that string

@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.zerohour.fragments.AlienCarFragment;
+import com.zerohour.fragments.ComplaintsFragment;
+import com.zerohour.fragments.EmergencyFragment;
 import com.zerohour.fragments.InviteFragment;
 import com.zerohour.fragments.MaidStatusFragment;
 import com.zerohour.fragments.NoticeBoardFragment;
@@ -68,9 +70,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new NoticeBoardFragment();
                 title = getString(R.string.nav_item_notice_board);
                 break;
-            case 5:
-                fragment = new NoticeBoardFragment();
+            case 4:
+                fragment = new ComplaintsFragment();
                 title = getString(R.string.nav_item_complaints);
+                break;
+            case 5:
+                fragment = new EmergencyFragment();
+                title = getString(R.string.nav_item_emergency);
                 break;
             default:
                 break;

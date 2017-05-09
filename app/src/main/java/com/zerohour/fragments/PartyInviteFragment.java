@@ -108,6 +108,9 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (view != null) {
+            return view;
+        }
         view = inflater.inflate(R.layout.fragment_party_invite, container, false);
         ButterKnife.bind(this, view);
         initUI();
