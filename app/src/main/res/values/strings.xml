@@ -40,8 +40,20 @@
     <string name="more_image">&#xE619;</string>
     <string name="place_of_marker">&#xE55F;</string>
     <string name="cake_image">&#xE7E9;</string>
+    <string name="face_image">&#xE87C;</string>
+    <string name="call_image">&#xE0B1;</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="message">Chakravarthi Inviting you for</string>
     <string name="send_invitation">Send Invitation</string>
+
+    <!--MaidStatus-->
+    <string name="name">Maid Name\u0020\u0020\u0020\u0020\u0020\u0020</string>
+    <string name="status">Maid Status\u0020\u0020\u0020\u0020\u0020</string>
+    <string name="lakshmi">:  Lakshmi</string>
+    <string name="in">:  In</string>
+    <string name="entered_time_value">:  07.00 AM</string>
+    <string name="entered_time">Entered Time\u0020\u0020\u0020</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_number_value">: 7799920206</string>
 </resources>

@@ -1,12 +1,126 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zerohour.fragments.MaidStatusFragment">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/tv_face_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/face_image"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_125sp" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_20dp">
+
+        <TextView
+            android:id="@+id/tv_maid_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingEnd="@dimen/_40dp"
+            android:text="@string/name"
+            android:textSize="@dimen/_17sp" />
+
+        <TextView
+            android:id="@+id/tv_maid_name_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/lakshmi"
+            android:textSize="@dimen/_17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_20dp">
+
+        <TextView
+            android:id="@+id/tv_maid_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingEnd="@dimen/_40dp"
+            android:text="@string/status"
+            android:textSize="@dimen/_17sp" />
+
+        <TextView
+            android:id="@+id/tv_maid_status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/in"
+            android:textSize="@dimen/_17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingTop="@dimen/_20dp">
+
+        <TextView
+            android:id="@+id/tv_entered_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingEnd="@dimen/_40dp"
+            android:text="@string/entered_time"
+            android:textSize="@dimen/_17sp" />
+
+        <TextView
+            android:id="@+id/tv_entered_time_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/entered_time_value"
+            android:textSize="@dimen/_17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingTop="@dimen/_20dp">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingEnd="@dimen/_40dp"
+            android:text="@string/phone_number"
+            android:textSize="@dimen/_17sp" />
+
+        <TextView
+            android:id="@+id/tv_phone_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/phone_number_value"
+            android:textSize="@dimen/_17sp" />
+
+        <TextView
+            android:id="@+id/tv_call_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingStart="@dimen/_10dp"
+            android:text="@string/call_image"
+            android:textColor="@color/green_color"
+            android:textSize="@dimen/_30sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
