@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/_10dp"
+    android:paddingStart="@dimen/_10dp"
+    android:paddingTop="@dimen/_10dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kalamandir"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="30% discount on the saree's.  Only on this Sunday 30% discount on the saree's.  Only on this Sunday 30% discount on the saree's.  Only on this Sunday30% discount on the saree's.  Only on this Sunday30% discount on the saree's.  Only on this Sunday30% discount on the saree's.  Only on this Sunday30% discount on the saree's.  Only on this Sunday"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_17sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
