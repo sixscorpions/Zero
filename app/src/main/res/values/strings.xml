@@ -56,4 +56,8 @@
     <string name="entered_time">Entered Time\u0020\u0020\u0020</string>
     <string name="phone_number">Phone Number</string>
     <string name="phone_number_value">: 7799920206</string>
+
+    <!-- Alien Car-->
+    <string name="blocking_car_number">Blocking car number</string>
+    <string name="get_details">Get Details</string>
 </resources>
