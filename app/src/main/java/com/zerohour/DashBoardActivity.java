@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.zerohour.adapters.ListItemAdapter;
 import com.zerohour.customviews.SlidingLayout;
 import com.zerohour.fragments.AlienCarFragment;
 import com.zerohour.fragments.ComplaintsFragment;
@@ -22,7 +22,10 @@ import com.zerohour.fragments.HomeFragment;
 import com.zerohour.fragments.InviteFragment;
 import com.zerohour.fragments.MaidStatusFragment;
 import com.zerohour.fragments.NoticeBoardFragment;
+import com.zerohour.model.LeftDrawerItem;
 import com.zerohour.utils.Utility;
+
+import java.util.ArrayList;
 
 public class DashBoardActivity extends AppCompatActivity {
     // The SlidingLayout which will hold both the sliding menu and our main content
@@ -53,7 +56,8 @@ public class DashBoardActivity extends AppCompatActivity {
         // Init menu
         listMenuItems = getResources().getStringArray(R.array.nav_drawer_labels);
         listMenu = (ListView) findViewById(R.id.activity_main_menu_listview);
-        listMenu.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listMenuItems));
+        ListItemAdapter listItemAdapter = new ListItemAdapter(DashBoardActivity.this, getListData());
+        listMenu.setAdapter(listItemAdapter);
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -82,6 +86,47 @@ public class DashBoardActivity extends AppCompatActivity {
 
         currentFragment = fragment;
         title.setText(Utility.getResourcesString(this, R.string.app_name));
+    }
+
+    private ArrayList<LeftDrawerItem> getListData() {
+        ArrayList<LeftDrawerItem> leftDrawerItems = new ArrayList<>();
+
+        LeftDrawerItem leftDrawerItem = new LeftDrawerItem();
+        leftDrawerItem.setName(Utility.getResourcesString(this, R.string.nav_item_home));
+        leftDrawerItem.setIcon(Utility.getResourcesString(this, R.string.home_icon));
+        leftDrawerItems.add(leftDrawerItem);
+
+        LeftDrawerItem leftDrawerItem1 = new LeftDrawerItem();
+        leftDrawerItem1.setName(Utility.getResourcesString(this, R.string.nav_item_invite));
+        leftDrawerItem1.setIcon(Utility.getResourcesString(this, R.string.party_icon));
+        leftDrawerItems.add(leftDrawerItem1);
+
+        LeftDrawerItem leftDrawerItem2 = new LeftDrawerItem();
+        leftDrawerItem2.setName(Utility.getResourcesString(this, R.string.nav_item_maid_status));
+        leftDrawerItem2.setIcon(Utility.getResourcesString(this, R.string.maid_icon));
+        leftDrawerItems.add(leftDrawerItem2);
+
+        LeftDrawerItem leftDrawerItem3 = new LeftDrawerItem();
+        leftDrawerItem3.setName(Utility.getResourcesString(this, R.string.nav_item_alien_car));
+        leftDrawerItem3.setIcon(Utility.getResourcesString(this, R.string.alien_car_icon));
+        leftDrawerItems.add(leftDrawerItem3);
+
+        LeftDrawerItem leftDrawerItem4 = new LeftDrawerItem();
+        leftDrawerItem4.setName(Utility.getResourcesString(this, R.string.nav_item_notice_board));
+        leftDrawerItem4.setIcon(Utility.getResourcesString(this, R.string.notice_icon));
+        leftDrawerItems.add(leftDrawerItem4);
+
+        LeftDrawerItem leftDrawerItem5 = new LeftDrawerItem();
+        leftDrawerItem5.setName(Utility.getResourcesString(this, R.string.nav_item_complaints));
+        leftDrawerItem5.setIcon(Utility.getResourcesString(this, R.string.complaints_icon));
+        leftDrawerItems.add(leftDrawerItem5);
+
+        LeftDrawerItem leftDrawerItem6 = new LeftDrawerItem();
+        leftDrawerItem6.setName(Utility.getResourcesString(this, R.string.nav_item_emergency));
+        leftDrawerItem6.setIcon(Utility.getResourcesString(this, R.string.emergency_icon));
+        leftDrawerItems.add(leftDrawerItem6);
+
+        return leftDrawerItems;
     }
 
     public void toggleMenu(View v) {

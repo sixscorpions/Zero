@@ -80,7 +80,7 @@ public class SlidingLayout extends LinearLayout {
 
         sldingLayoutWidth = MeasureSpec.getSize(widthMeasureSpec);
         //Sliding menu will take 85% screen size when completely shown
-        menuRightMargin = sldingLayoutWidth * 15 / 100;
+        menuRightMargin = sldingLayoutWidth * 35 / 100;
     }
 
     // This is called when SlidingLayout is attached to window
