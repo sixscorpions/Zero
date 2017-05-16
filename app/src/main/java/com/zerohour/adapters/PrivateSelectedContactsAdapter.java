@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
 import com.zerohour.fragments.PartyInviteFragment;
@@ -26,7 +27,7 @@ public class PrivateSelectedContactsAdapter extends BaseAdapter {
     private Typeface mMaterialTypeface;
 
 
-    public PrivateSelectedContactsAdapter(MainActivity mParent, ArrayList<String> mContacts) {
+    public PrivateSelectedContactsAdapter(DashBoardActivity mParent, ArrayList<String> mContacts) {
         mLayoutInflater = (LayoutInflater) mParent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMaterialTypeface = Utility.getMaterialIconsRegular(mParent);
         this.mContacts = mContacts;

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Zerohour</string>
 
+    <string name="nav_item_home">Home</string>
     <string name="nav_item_invite">Invite</string>
     <string name="nav_item_maid_status">Maid Status</string>
     <string name="nav_item_alien_car">Alien Car</string>
@@ -10,6 +11,7 @@
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
         <item>@string/nav_item_invite</item>
         <item>@string/nav_item_maid_status</item>
         <item>@string/nav_item_alien_car</item>
@@ -73,5 +75,9 @@
     <string name="panic">Panic</string>
     <string name="fire">Fire/Gas</string>
     <string name="chakravarthi">Chakravarthi</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

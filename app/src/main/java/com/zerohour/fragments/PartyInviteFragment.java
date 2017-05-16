@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.zerohour.MainActivity;
+import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
 import com.zerohour.adapters.PrivateSelectedContactsAdapter;
 import com.zerohour.interfaces.IUpdateDialogData;
@@ -41,7 +41,7 @@ import butterknife.OnClick;
  */
 public class PartyInviteFragment extends Fragment implements IUpdateDialogData, IUpdateNumberData {
 
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
 
     @BindView(R.id.et_mobile_number)
@@ -103,7 +103,7 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
         super.onCreate(savedInstanceState);
         iUpdateDialogData = this;
         iUpdateNumberData = this;
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
     }
 
     @Override

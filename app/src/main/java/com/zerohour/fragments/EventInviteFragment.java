@@ -11,7 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.zerohour.MainActivity;
+import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
 import com.zerohour.utils.Utility;
 
@@ -28,7 +28,7 @@ public class EventInviteFragment extends Fragment {
 
 
     public static final String TAG = EventInviteFragment.class.getSimpleName();
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
 
     @BindView(R.id.et_date)
@@ -41,7 +41,7 @@ public class EventInviteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
 import com.zerohour.utils.Utility;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
 public class InviteFragment extends Fragment {
 
     public static final String TAG = InviteFragment.class.getSimpleName();
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
 
     @BindView(R.id.tabs)
@@ -39,7 +40,7 @@ public class InviteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
     }
 
     @Override
