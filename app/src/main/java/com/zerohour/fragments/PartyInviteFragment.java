@@ -4,12 +4,14 @@ package com.zerohour.fragments;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +25,23 @@ import android.widget.TimePicker;
 
 import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
+import com.zerohour.adapters.ContactsAdapter;
 import com.zerohour.adapters.PrivateSelectedContactsAdapter;
 import com.zerohour.interfaces.IUpdateDialogData;
 import com.zerohour.interfaces.IUpdateNumberData;
+import com.zerohour.model.Contact;
 import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,6 +100,10 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
     public static Dialog mDialog;
     private static IUpdateDialogData iUpdateDialogData;
     private static IUpdateNumberData iUpdateNumberData;
+
+    private Cursor mCursor;
+    private Set<Contact> result;
+    public static JSONArray contactsarray = new JSONArray();
 
     public static IUpdateDialogData getInstance() {
         return iUpdateDialogData;
@@ -182,11 +197,77 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
 
     @OnClick(R.id.tv_contacts_image)
     void pickContact() {
-        Intent pickContactIntent = new Intent(Intent.ACTION_PICK,
+        /*Intent pickContactIntent = new Intent(Intent.ACTION_PICK,
                 Uri.parse("content://contacts"));
         pickContactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-        mParent.startActivityForResult(pickContactIntent, Constants.RESULT_PICK_CONTACT);
+        mParent.startActivityForResult(pickContactIntent, Constants.RESULT_PICK_CONTACT);*/
+        final Dialog dialog = new Dialog(mParent);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.contacts_dialog);
+        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(true); // can dismiss alert screen when user click back buttonon
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        EditText et_search = (EditText) dialog.findViewById(R.id.et_search);
+        TextView tv_et_search_image = (TextView) dialog.findViewById(R.id.tv_et_search_image);
+        ListView ll_contacts = (ListView) dialog.findViewById(R.id.ll_contacts);
+        TextView tv_pick = (TextView) dialog.findViewById(R.id.tv_pick);
+
+        tv_et_search_image.setTypeface(Utility.getMaterialIconsRegular(mParent));
+
+        mCursor = mParent.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null,
+                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+        Set<Contact> contacts = getContacts();
+        ArrayList<Contact> newList = new ArrayList<>(new HashSet<>(contacts));
+
+        Collections.sort(newList, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact lhs, Contact rhs) {
+                char lhsFirstLetter = TextUtils.isEmpty(lhs.displayName) ? ' ' : lhs.displayName.charAt(0);
+                char rhsFirstLetter = TextUtils.isEmpty(rhs.displayName) ? ' ' : rhs.displayName.charAt(0);
+                int firstLetterComparison = Character.toUpperCase(lhsFirstLetter) - Character.toUpperCase(rhsFirstLetter);
+                if (firstLetterComparison == 0)
+                    return lhs.displayName.compareTo(rhs.displayName);
+                return firstLetterComparison;
+            }
+        });
+
+        ContactsAdapter mAdapter = new ContactsAdapter(mParent, newList);
+        ll_contacts.setAdapter(mAdapter);
+
+        dialog.show();
     }
+
+    private Set<Contact> getContacts() {
+        if (checkContactsReadPermission()) {
+            result = new TreeSet<>();
+            if (mCursor != null) {
+                Log.e("count", "" + mCursor.getCount());
+                while (mCursor.moveToNext()) {
+                    String name = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                    String phoneNumber = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    String image_uri = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+                    if (!name.equals(phoneNumber)) {
+                        Contact contact = new Contact(name, phoneNumber, image_uri);
+                        contact.setCheckBox(false);
+                        result.add(contact);
+                    }
+                }
+            } else {
+                Log.e("Cursor close 1", "----------------");
+            }
+        }
+        return result;
+    }
+
+    private boolean checkContactsReadPermission() {
+        String permission = "android.permission.READ_CONTACTS";
+        int res = mParent.checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
 
     @OnClick({R.id.tv_date, R.id.et_date})
     void dateSelection() {

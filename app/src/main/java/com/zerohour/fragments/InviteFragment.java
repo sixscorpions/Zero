@@ -60,6 +60,7 @@ public class InviteFragment extends Fragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(mParent.getSupportFragmentManager());
         adapter.addFragment(new PartyInviteFragment(), Utility.getResourcesString(mParent, R.string.party_invite));
         adapter.addFragment(new EventInviteFragment(), Utility.getResourcesString(mParent, R.string.event_invite));
+        adapter.addFragment(new InviteHistoryFragment(), Utility.getResourcesString(mParent, R.string.invite_history));
         viewpager.setAdapter(adapter);
     }
 

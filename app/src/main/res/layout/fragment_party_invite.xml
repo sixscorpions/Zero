@@ -151,7 +151,8 @@
                 android:layout_marginStart="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <EditText
                     android:id="@+id/et_current_location"
@@ -182,7 +183,8 @@
                 android:layout_height="@dimen/_1px"
                 android:layout_marginEnd="@dimen/_10dp"
                 android:layout_marginStart="@dimen/_10dp"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
