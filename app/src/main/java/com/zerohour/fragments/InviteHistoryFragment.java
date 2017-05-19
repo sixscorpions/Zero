@@ -6,19 +6,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
+import com.zerohour.adapters.InviteHistoryAdapter;
+import com.zerohour.model.InviteHistoryModel;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InviteHistoryFragment extends Fragment {
+public class InviteHistoryFragment extends Fragment implements AdapterView.OnItemClickListener {
     private DashBoardActivity mParent;
     private View view;
+
+    @BindView(R.id.ll_invite_history)
+    ListView llInviteHistory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,9 +48,37 @@ public class InviteHistoryFragment extends Fragment {
     }
 
     private void initUI() {
+        InviteHistoryAdapter inviteHistoryAdapter = new InviteHistoryAdapter(mParent, getInviteHistoryData());
+        llInviteHistory.setAdapter(inviteHistoryAdapter);
+        llInviteHistory.setOnItemClickListener(this);
+    }
 
+    private ArrayList<InviteHistoryModel> getInviteHistoryData() {
+        ArrayList<InviteHistoryModel> inviteHistoryModels = new ArrayList<>();
 
+        InviteHistoryModel inviteHistoryModel = new InviteHistoryModel();
+        inviteHistoryModel.setMonth("May");
+        inviteHistoryModel.setDay("23");
+        inviteHistoryModel.setPurpose("Birthday Function, Come a celebrate...!");
+        inviteHistoryModels.add(inviteHistoryModel);
+
+        InviteHistoryModel inviteHistoryModel2 = new InviteHistoryModel();
+        inviteHistoryModel2.setMonth("May");
+        inviteHistoryModel2.setDay("29");
+        inviteHistoryModel2.setPurpose("My Daughter 1st Birthday");
+        inviteHistoryModels.add(inviteHistoryModel2);
+
+        InviteHistoryModel inviteHistoryModel3 = new InviteHistoryModel();
+        inviteHistoryModel3.setMonth("Jun");
+        inviteHistoryModel3.setDay("19");
+        inviteHistoryModel3.setPurpose("My Marriage day");
+        inviteHistoryModels.add(inviteHistoryModel3);
+        return inviteHistoryModels;
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }

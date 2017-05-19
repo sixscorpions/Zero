@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
 import com.zerohour.model.NoticeBoardItem;
@@ -26,7 +27,7 @@ public class NoticeBoardItemAdapter extends BaseAdapter {
     private Typeface mMaterialTypeface;
 
 
-    public NoticeBoardItemAdapter(MainActivity mParent, ArrayList<NoticeBoardItem> noticeBoardItems) {
+    public NoticeBoardItemAdapter(DashBoardActivity mParent, ArrayList<NoticeBoardItem> noticeBoardItems) {
         mLayoutInflater = (LayoutInflater) mParent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMaterialTypeface = Utility.getMaterialIconsRegular(mParent);
         this.noticeBoardItems = noticeBoardItems;

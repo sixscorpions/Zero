@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.zerohour.MainActivity;
+import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
 import com.zerohour.adapters.NoticeBoardItemAdapter;
 import com.zerohour.model.NoticeBoardItem;
@@ -28,7 +28,7 @@ public class NoticeBoardFragment extends Fragment implements AdapterView.OnItemC
 
 
     public static final String TAG = NoticeBoardFragment.class.getSimpleName();
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
 
     @BindView(R.id.list_view_notice_board)
@@ -38,7 +38,7 @@ public class NoticeBoardFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
     }
 
 
