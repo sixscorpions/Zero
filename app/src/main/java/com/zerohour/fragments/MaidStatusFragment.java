@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.zerohour.MainActivity;
+import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
 import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
@@ -29,7 +29,7 @@ import butterknife.OnClick;
 public class MaidStatusFragment extends Fragment {
 
     public static final String TAG = MaidStatusFragment.class.getSimpleName();
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
 
     @BindView(R.id.tv_face_image)
@@ -41,7 +41,7 @@ public class MaidStatusFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
     }
 
 

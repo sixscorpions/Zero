@@ -93,4 +93,8 @@
     <string name="select_contact">Select Contacts</string>
     <string name="search">Search</string>
 
+    <string name="may">May</string>
+    <string name="date_hint">23</string>
+    <string name="contacts">Contacts...</string>
+
 </resources>

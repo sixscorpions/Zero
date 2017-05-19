@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="nav_drawer_width">260dp</dimen>
+    <dimen name="_3dp">3dp</dimen>
     <dimen name="_5dp">5dp</dimen>
     <dimen name="_10dp">10dp</dimen>
     <dimen name="_16dp">16dp</dimen>
@@ -9,7 +10,14 @@
     <dimen name="_40dp">40dp</dimen>
     <dimen name="_45dp">45dp</dimen>
     <dimen name="_50dp">50dp</dimen>
+    <dimen name="_90dp">90dp</dimen>
     <dimen name="_100dp">100dp</dimen>
+    <dimen name="_110dp">110dp</dimen>
+    <dimen name="_120dp">120dp</dimen>
+    <dimen name="_130dp">130dp</dimen>
+    <dimen name="_140dp">140dp</dimen>
+    <dimen name="_150dp">150dp</dimen>
+    <dimen name="_200dp">200dp</dimen>
 
     <dimen name="_15sp">15sp</dimen>
     <dimen name="_16sp">16sp</dimen>
