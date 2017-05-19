@@ -10,7 +10,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,8 @@ import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -104,6 +108,8 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
     private Cursor mCursor;
     private Set<Contact> result;
     public static JSONArray contactsarray = new JSONArray();
+    public static ArrayList<String> contactsListModel = new ArrayList<>();
+
 
     public static IUpdateDialogData getInstance() {
         return iUpdateDialogData;
@@ -215,6 +221,21 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
         ListView ll_contacts = (ListView) dialog.findViewById(R.id.ll_contacts);
         TextView tv_pick = (TextView) dialog.findViewById(R.id.tv_pick);
 
+        tv_pick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (contactsListModel.size() > 0) {
+                    for (String mNum : contactsListModel) {
+                        if (!numbersSelected.contains(mNum))
+                            numbersSelected.add(mNum);
+                    }
+                    updateData();
+                }
+                Utility.showToastMessage(getActivity(), "SELECTED CONTACTS" + contactsListModel.size());
+                contactsListModel.clear();
+                dialog.dismiss();
+            }
+        });
         tv_et_search_image.setTypeface(Utility.getMaterialIconsRegular(mParent));
 
         mCursor = mParent.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null,
@@ -234,9 +255,25 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
             }
         });
 
-        ContactsAdapter mAdapter = new ContactsAdapter(mParent, newList);
+        final ContactsAdapter mAdapter = new ContactsAdapter(mParent, newList);
         ll_contacts.setAdapter(mAdapter);
 
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         dialog.show();
     }
 

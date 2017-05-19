@@ -152,7 +152,11 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
                                 jobj.put("contact_number", onlynumber);
                                 jobj.put("isd_code", countryCode);
                                 PartyInviteFragment.contactsarray.put(jobj);
-
+                                if (PartyInviteFragment.contactsListModel.size() > 0) {
+                                    if (!PartyInviteFragment.contactsListModel.contains(onlynumber))
+                                        PartyInviteFragment.contactsListModel.add(onlynumber);
+                                } else
+                                    PartyInviteFragment.contactsListModel.add(onlynumber);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
