@@ -59,7 +59,7 @@ public class InviteHistoryFragment extends Fragment implements AdapterView.OnIte
         InviteHistoryModel inviteHistoryModel = new InviteHistoryModel();
         inviteHistoryModel.setMonth("May");
         inviteHistoryModel.setDay("23");
-        inviteHistoryModel.setPurpose("Birthday Function");
+        inviteHistoryModel.setPurpose("Birthday Function, Come a celebrate...!");
         inviteHistoryModels.add(inviteHistoryModel);
 
         InviteHistoryModel inviteHistoryModel2 = new InviteHistoryModel();
