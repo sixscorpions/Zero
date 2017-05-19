@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ import java.util.Locale;
 public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Contact> {
 
     private ArrayList<Contact> mContacts;
+    private ArrayList<Contact> sortedList;
     private LayoutInflater mInflater;
     private Context mContext;
     private String[] mCodeList;
@@ -96,6 +98,7 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
 
 
         final Contact contact = getItem(position);
+
         if (contact.ismContacts_Flow()) {
             holder.check.setChecked(true);
 
@@ -149,6 +152,7 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
                                 jobj.put("contact_number", onlynumber);
                                 jobj.put("isd_code", countryCode);
                                 PartyInviteFragment.contactsarray.put(jobj);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -177,5 +181,52 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
         this.mContacts = mList;
         setData(mList);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
+                ArrayList<Contact> FilteredArrList = new ArrayList<>();
+
+
+                if (sortedList == null) {
+                    sortedList = new ArrayList<>(mContacts); // saves the original data in mOriginalValues
+                }
+
+                /********
+                 *
+                 *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
+                 *  else does the Filtering and returns FilteredArrList(Filtered)
+                 *
+                 ********/
+                if (constraint == null || constraint.length() == 0) {
+
+                    // set the Original result to return
+                    results.count = sortedList.size();
+                    results.values = sortedList;
+                } else {
+                    constraint = constraint.toString().toLowerCase();
+                    for (int i = 0; i < sortedList.size(); i++) {
+                        Contact data = sortedList.get(i);
+                        if (data.getDisplayName().toLowerCase().contains(constraint.toString())) {
+                            FilteredArrList.add(data);
+                        }
+                    }
+                    // set the Filtered result to return
+                    results.count = FilteredArrList.size();
+                    results.values = FilteredArrList;
+                }
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mContacts = (ArrayList<Contact>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
