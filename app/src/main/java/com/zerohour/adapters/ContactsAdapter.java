@@ -17,6 +17,7 @@ import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
 import com.zerohour.fragments.PartyInviteFragment;
 import com.zerohour.model.Contact;
+import com.zerohour.utils.Utility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -138,19 +139,20 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
                     contact.setCheckBox(true);
                     JSONObject jobj = new JSONObject();
                     if (contact.getCheckBox()) {
-                        String countryCode;
                         String onlynumber;
                         String num = contact.getPhoneNumber().trim();
                         num = num.replace(" ", "");
                         num = num.replace("-", "");
+                        num = num.replace("+91", "");
+                        if (num.charAt(0) == '0') {
+                            num = num.substring(1);
+                        }
                         String name = contact.getDisplayName();
-                        if (num.contains("+") && num.length() > 10) {
-                            countryCode = num.substring(0, num.length() - 10);
+                        if (num.length() == 10) {
                             onlynumber = num.substring(num.length() - 10);
                             try {
                                 jobj.put("contact_name", name);
                                 jobj.put("contact_number", onlynumber);
-                                jobj.put("isd_code", countryCode);
                                 PartyInviteFragment.contactsarray.put(jobj);
                                 if (PartyInviteFragment.contactsListModel.size() > 0) {
                                     if (!PartyInviteFragment.contactsListModel.contains(onlynumber))

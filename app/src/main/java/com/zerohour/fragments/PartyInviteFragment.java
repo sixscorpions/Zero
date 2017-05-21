@@ -1,6 +1,7 @@
 package com.zerohour.fragments;
 
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -9,7 +10,9 @@ import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -36,8 +39,6 @@ import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -149,6 +150,24 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
         tv_current_location_image.setTypeface(Utility.getMaterialIconsRegular(mParent));
         tv_et_reason_image.setTypeface(Utility.getMaterialIconsRegular(mParent));
         tv_more.setTypeface(Utility.getMaterialIconsRegular(mParent));
+        askPermission();
+    }
+
+    private void askPermission() {
+        if (ContextCompat.checkSelfPermission(mParent,
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mParent,
+                    Manifest.permission.READ_CONTACTS)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(mParent,
+                        new String[]{Manifest.permission.READ_CONTACTS},
+                        Constants.MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            }
+        }
     }
 
     @OnClick(R.id.tv_add_image)
@@ -231,7 +250,7 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
                     }
                     updateData();
                 }
-                Utility.showToastMessage(getActivity(), "SELECTED CONTACTS" + contactsListModel.size());
+                //Utility.showToastMessage(getActivity(), "SELECTED CONTACTS" + contactsListModel.size());
                 contactsListModel.clear();
                 dialog.dismiss();
             }

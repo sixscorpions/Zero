@@ -28,7 +28,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".DashBoardActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustNothing" />
     </application>
 
 </manifest>

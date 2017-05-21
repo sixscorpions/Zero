@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
 import com.zerohour.utils.Constants;
@@ -26,7 +27,7 @@ import butterknife.OnClick;
 public class PartyInviteResultFragment extends Fragment {
 
     public static final String TAG = PartyInviteResultFragment.class.getSimpleName();
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
     private Bundle bundle;
 
@@ -41,7 +42,7 @@ public class PartyInviteResultFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
         bundle = getArguments();
         if (bundle != null) {
             purpose = bundle.getString(Constants.PURPOSE);

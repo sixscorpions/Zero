@@ -15,4 +15,5 @@ public class Constants {
     public static final String CONTACTS = "contacts";
 
     public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 200;
+    public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 201;
 }
