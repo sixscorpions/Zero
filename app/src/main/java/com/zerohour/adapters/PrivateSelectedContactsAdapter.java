@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
+import com.zerohour.fragments.InviteHistoryDetailFragment;
 import com.zerohour.fragments.PartyInviteFragment;
 import com.zerohour.utils.Utility;
 
@@ -25,12 +26,14 @@ public class PrivateSelectedContactsAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
     private ArrayList<String> mContacts;
     private Typeface mMaterialTypeface;
+    private String mTag;
 
 
-    public PrivateSelectedContactsAdapter(DashBoardActivity mParent, ArrayList<String> mContacts) {
+    public PrivateSelectedContactsAdapter(DashBoardActivity mParent, ArrayList<String> mContacts, String mTag) {
         mLayoutInflater = (LayoutInflater) mParent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMaterialTypeface = Utility.getMaterialIconsRegular(mParent);
         this.mContacts = mContacts;
+        this.mTag = mTag;
     }
 
     @Override
@@ -73,11 +76,20 @@ public class PrivateSelectedContactsAdapter extends BaseAdapter {
             public void onClick(View view) {
                 int position = view.getId();
                 mContacts.remove(position);
-                PartyInviteFragment.getInstance().updatedData(mContacts);
-                notifyDataSetChanged();
-                if (mContacts != null && mContacts.size() <= 0) {
-                    PartyInviteFragment.mDialog.dismiss();
+                if (mTag.equalsIgnoreCase(InviteHistoryDetailFragment.TAG)) {
+                    InviteHistoryDetailFragment.getInstance().updatedData(mContacts);
+                    notifyDataSetChanged();
+                    if (mContacts != null && mContacts.size() <= 0) {
+                        InviteHistoryDetailFragment.mDialog.dismiss();
+                    }
+                } else {
+                    PartyInviteFragment.getInstance().updatedData(mContacts);
+                    notifyDataSetChanged();
+                    if (mContacts != null && mContacts.size() <= 0) {
+                        PartyInviteFragment.mDialog.dismiss();
+                    }
                 }
+
             }
         });
 

@@ -15,9 +15,9 @@ import com.pinnedlistview.SearchablePinnedHeaderListViewAdapter;
 import com.pinnedlistview.StringArrayAlphabetIndexer;
 import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
+import com.zerohour.fragments.InviteHistoryDetailFragment;
 import com.zerohour.fragments.PartyInviteFragment;
 import com.zerohour.model.Contact;
-import com.zerohour.utils.Utility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,10 +37,12 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
     private LayoutInflater mInflater;
     private Context mContext;
     private String[] mCodeList;
+    private String mTag;
 
-    public ContactsAdapter(DashBoardActivity parent, final ArrayList<Contact> contacts) {
+    public ContactsAdapter(DashBoardActivity parent, final ArrayList<Contact> contacts, String mTag) {
         mInflater = LayoutInflater.from(parent);
         mContext = parent;
+        this.mTag = mTag;
         setData(contacts);
     }
 
@@ -153,12 +155,21 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
                             try {
                                 jobj.put("contact_name", name);
                                 jobj.put("contact_number", onlynumber);
-                                PartyInviteFragment.contactsarray.put(jobj);
-                                if (PartyInviteFragment.contactsListModel.size() > 0) {
-                                    if (!PartyInviteFragment.contactsListModel.contains(onlynumber))
+                                if (mTag.equalsIgnoreCase(InviteHistoryDetailFragment.TAG)) {
+                                    InviteHistoryDetailFragment.contactsarray.put(jobj);
+                                    if (InviteHistoryDetailFragment.contactsListModel.size() > 0) {
+                                        if (!InviteHistoryDetailFragment.contactsListModel.contains(onlynumber))
+                                            InviteHistoryDetailFragment.contactsListModel.add(onlynumber);
+                                    } else
+                                        InviteHistoryDetailFragment.contactsListModel.add(onlynumber);
+                                } else {
+                                    PartyInviteFragment.contactsarray.put(jobj);
+                                    if (PartyInviteFragment.contactsListModel.size() > 0) {
+                                        if (!PartyInviteFragment.contactsListModel.contains(onlynumber))
+                                            PartyInviteFragment.contactsListModel.add(onlynumber);
+                                    } else
                                         PartyInviteFragment.contactsListModel.add(onlynumber);
-                                } else
-                                    PartyInviteFragment.contactsListModel.add(onlynumber);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -167,8 +178,14 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
                 } else {
                     contact.setmContacts_Flow(false);
                     contact.setCheckBox(false);
-                    for (int i = 0; i < PartyInviteFragment.contactsarray.length(); i++) {
-                        PartyInviteFragment.contactsarray.remove(i);
+                    if (mTag.equalsIgnoreCase(InviteHistoryDetailFragment.TAG)) {
+                        for (int i = 0; i < InviteHistoryDetailFragment.contactsarray.length(); i++) {
+                            InviteHistoryDetailFragment.contactsarray.remove(i);
+                        }
+                    } else {
+                        for (int i = 0; i < PartyInviteFragment.contactsarray.length(); i++) {
+                            PartyInviteFragment.contactsarray.remove(i);
+                        }
                     }
                 }
             }

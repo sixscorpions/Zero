@@ -57,6 +57,7 @@ import butterknife.OnClick;
  */
 public class PartyInviteFragment extends Fragment implements IUpdateDialogData, IUpdateNumberData {
 
+    public static final String TAG = PartyInviteFragment.class.getSimpleName();
     private DashBoardActivity mParent;
     private View view;
 
@@ -274,7 +275,7 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
             }
         });
 
-        final ContactsAdapter mAdapter = new ContactsAdapter(mParent, newList);
+        final ContactsAdapter mAdapter = new ContactsAdapter(mParent, newList, TAG);
         ll_contacts.setAdapter(mAdapter);
 
         et_search.addTextChangedListener(new TextWatcher() {
@@ -368,7 +369,7 @@ public class PartyInviteFragment extends Fragment implements IUpdateDialogData, 
                 ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         ListView listView = (ListView) mDialog.findViewById(R.id.lv_contacts);
-        PrivateSelectedContactsAdapter privateSelectedContactsAdapter = new PrivateSelectedContactsAdapter(mParent, numbersSelected);
+        PrivateSelectedContactsAdapter privateSelectedContactsAdapter = new PrivateSelectedContactsAdapter(mParent, numbersSelected, TAG);
         listView.setAdapter(privateSelectedContactsAdapter);
 
         mDialog.show();

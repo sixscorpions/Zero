@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -47,15 +48,21 @@
         android:text="@string/app_name"
         android:textSize="@dimen/_17sp" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1px"
+        android:layout_below="@+id/tv_purpose"
+        android:layout_marginTop="@dimen/_10dp"
+        android:background="@color/colorPrimary" />
 
     <LinearLayout
         android:id="@+id/ll_mobile_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/view"
         android:layout_marginEnd="@dimen/_10dp"
         android:layout_marginStart="@dimen/_10dp"
-        android:layout_marginTop="@dimen/_10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -93,8 +100,94 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/view_2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1px"
-        android:layout_above="@id/ll_mobile_number"
+        android:layout_below="@+id/ll_mobile_number"
         android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/ll_first_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_2"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/_10dp"
+        android:paddingStart="@dimen/_10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_first_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_18sp" />
+
+        <TextView
+            android:id="@+id/tv_first_contact_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50dp"
+            android:layout_marginStart="@dimen/_50dp"
+            android:gravity="center"
+            android:text="@string/remove_image"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_second_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_first_contact"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/_10dp"
+        android:paddingStart="@dimen/_10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_second_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_18sp" />
+
+        <TextView
+            android:id="@+id/tv_first_second_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50dp"
+            android:layout_marginStart="@dimen/_50dp"
+            android:gravity="center"
+            android:text="@string/remove_image"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_25sp" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50dp"
+            android:gravity="center"
+            android:text="@string/more_image"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_25sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:minHeight="@dimen/_50dp"
+        android:text="@string/submit"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_18sp" />
 </RelativeLayout>
