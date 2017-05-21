@@ -1,20 +1,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinner_category"
+    <RadioGroup
+        android:id="@+id/rl_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/_45dp" />
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp">
+
+        <RadioButton
+            android:id="@+id/radio_button_plumbing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plumbing" />
+
+        <RadioButton
+            android:id="@+id/radio_button_electrical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/electrical" />
+
+        <RadioButton
+            android:id="@+id/radio_button_general"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/general" />
+    </RadioGroup>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1px"
         android:layout_marginEnd="@dimen/_10dp"
         android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:background="@color/colorPrimary" />
 
 

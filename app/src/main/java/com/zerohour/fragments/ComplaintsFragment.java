@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.zerohour.DashBoardActivity;
@@ -31,12 +32,17 @@ public class ComplaintsFragment extends Fragment {
     private DashBoardActivity mParent;
     private View view;
 
-    @BindView(R.id.spinner_category)
-    Spinner spinnerCategory;
+    /*@BindView(R.id.spinner_category)
+    Spinner spinnerCategory;*/
     @BindView(R.id.et_complaint)
     EditText etComplaint;
 
-    private ArrayList<String> categories;
+    @BindView(R.id.radio_button_plumbing)
+    RadioButton radioButtonPlumbing;
+    @BindView(R.id.radio_button_electrical)
+    RadioButton radioButtonElectrical;
+    @BindView(R.id.radio_button_general)
+    RadioButton radioButtonGeneral;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,14 +60,7 @@ public class ComplaintsFragment extends Fragment {
     }
 
     private void initUI() {
-        categories = new ArrayList<>();
-        categories.add("Plumbing");
-        categories.add("Electrical");
-        categories.add("General");
 
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(mParent, android.R.layout.simple_spinner_item, categories);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategory.setAdapter(spinnerArrayAdapter);
 
     }
 

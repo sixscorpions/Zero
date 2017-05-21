@@ -96,5 +96,8 @@
     <string name="may">May</string>
     <string name="date_hint">23</string>
     <string name="contacts">Contacts...</string>
+    <string name="plumbing">Plumbing</string>
+    <string name="electrical">Electrical</string>
+    <string name="general">General</string>
 
 </resources>
