@@ -8,7 +8,7 @@
         android:layout_width="@dimen/_90dp"
         android:layout_height="@dimen/_90dp"
         android:layout_margin="@dimen/_5dp"
-        android:background="@drawable/bg_invite_date"
+        android:background="@drawable/bg_circle"
         android:gravity="center"
         android:orientation="vertical">
 

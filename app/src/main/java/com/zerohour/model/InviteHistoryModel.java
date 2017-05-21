@@ -1,12 +1,13 @@
 package com.zerohour.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Shankar on 5/19/2017.
  */
 
-public class InviteHistoryModel {
+public class InviteHistoryModel implements Serializable {
     private String month;
     private String day;
     private String purpose;

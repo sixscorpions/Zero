@@ -13,6 +13,7 @@ public class Constants {
     public static final String TIME = "time";
     public static final String LOCATION = "location";
     public static final String CONTACTS = "contacts";
+    public static final String INVITE_HISTORY = "INVITE_HISTORY";
 
     public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 200;
     public static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 201;

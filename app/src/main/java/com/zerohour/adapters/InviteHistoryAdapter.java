@@ -2,6 +2,7 @@ package com.zerohour.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 
 import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
+import com.zerohour.fragments.InviteHistoryDetailFragment;
 import com.zerohour.model.InviteHistoryModel;
+import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import java.util.ArrayList;
@@ -24,12 +27,14 @@ public class InviteHistoryAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
     private ArrayList<InviteHistoryModel> inviteHistoryModels;
     private Typeface mMaterialTypeface;
+    private DashBoardActivity mParent;
 
 
     public InviteHistoryAdapter(DashBoardActivity mParent, ArrayList<InviteHistoryModel> inviteHistoryModels) {
         mLayoutInflater = (LayoutInflater) mParent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMaterialTypeface = Utility.getMaterialIconsRegular(mParent);
         this.inviteHistoryModels = inviteHistoryModels;
+        this.mParent = mParent;
     }
 
     @Override
@@ -48,7 +53,7 @@ public class InviteHistoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         InviteHistoryItemHolder mInviteHistoryItemHolder = null;
 
@@ -70,6 +75,18 @@ public class InviteHistoryAdapter extends BaseAdapter {
         mInviteHistoryItemHolder.tv_month.setText("" + inviteHistoryModel.getMonth());
         mInviteHistoryItemHolder.tv_day.setText("" + inviteHistoryModel.getDay());
         mInviteHistoryItemHolder.tv_purpose.setText("" + inviteHistoryModel.getPurpose());
+
+        convertView.setId(position);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = v.getId();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constants.INVITE_HISTORY, inviteHistoryModels.get(position));
+                Utility.navigateDashBoardFragment(new InviteHistoryDetailFragment(),
+                        InviteHistoryDetailFragment.TAG, bundle, mParent);
+            }
+        });
 
         return convertView;
     }

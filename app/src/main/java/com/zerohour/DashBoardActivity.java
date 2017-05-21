@@ -172,13 +172,18 @@ public class DashBoardActivity extends AppCompatActivity {
                 break;
         }
 
-        if (!fragment.getClass().equals(currentFragment.getClass())) {
+       /* if (!fragment.getClass().equals(currentFragment.getClass())) {
             // Replace current fragment by this new one
             ft.replace(R.id.activity_main_content_fragment, fragment);
             ft.commit();
 
             currentFragment = fragment;
-        }
+        }*/
+
+        ft.replace(R.id.activity_main_content_fragment, fragment);
+        ft.commit();
+
+        currentFragment = fragment;
 
         // Hide menu anyway
         slidingLayout.toggleMenu();
