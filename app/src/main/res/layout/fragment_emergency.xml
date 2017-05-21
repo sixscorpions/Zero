@@ -5,11 +5,11 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_panic_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/panic_image"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_150dp"
+        android:src="@drawable/panic"
         android:textColor="@color/red_color"
         android:textSize="@dimen/_150sp" />
 

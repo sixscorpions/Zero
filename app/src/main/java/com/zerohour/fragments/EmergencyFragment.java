@@ -26,8 +26,6 @@ public class EmergencyFragment extends Fragment {
     private DashBoardActivity mParent;
     private View view;
 
-    @BindView(R.id.tv_panic_image)
-    TextView tvPanicImage;
     @BindView(R.id.tv_panic)
     TextView tvPanic;
     @BindView(R.id.tv_fire_image)
@@ -52,7 +50,6 @@ public class EmergencyFragment extends Fragment {
     }
 
     private void initUI() {
-        tvPanicImage.setTypeface(Utility.getFontAwesomeWebFont(mParent));
         tvFireImage.setTypeface(Utility.getFontAwesomeWebFont(mParent));
     }
 
