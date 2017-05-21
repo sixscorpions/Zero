@@ -13,6 +13,7 @@ import com.zerohour.DashBoardActivity;
 import com.zerohour.R;
 import com.zerohour.adapters.NoticeBoardItemAdapter;
 import com.zerohour.model.NoticeBoardItem;
+import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import java.util.ArrayList;
@@ -53,24 +54,33 @@ public class NoticeBoardFragment extends Fragment implements AdapterView.OnItemC
     private void initUI() {
         NoticeBoardItemAdapter noticeBoardItemAdapter = new NoticeBoardItemAdapter(mParent, getNoticeBoardData());
         listViewNoticeBoard.setAdapter(noticeBoardItemAdapter);
-        listViewNoticeBoard.setOnItemClickListener(this);
+        //listViewNoticeBoard.setOnItemClickListener(this);
     }
 
     private ArrayList<NoticeBoardItem> getNoticeBoardData() {
         ArrayList<NoticeBoardItem> noticeBoardItems = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            NoticeBoardItem noticeBoardItem = new NoticeBoardItem();
-            noticeBoardItem.setTitle("Kalamandir");
-            noticeBoardItem.setMessage("30% discount on the saree's.  Only on this Sunday");
-            noticeBoardItems.add(noticeBoardItem);
-        }
+        //for (int i = 0; i < 10; i++) {
+        NoticeBoardItem noticeBoardItem = new NoticeBoardItem();
+        noticeBoardItem.setTitle("Kalamandir");
+        noticeBoardItem.setMessage("30% discount on the saree's.  Only on this Sunday");
+        noticeBoardItems.add(noticeBoardItem);
+
+        NoticeBoardItem noticeBoardItem2 = new NoticeBoardItem();
+        noticeBoardItem2.setTitle("Chadana Brothers");
+        noticeBoardItem2.setMessage("10% discount on the saree's.  Only on this Wednesday");
+        noticeBoardItems.add(noticeBoardItem2);
+
+        NoticeBoardItem noticeBoardItem3 = new NoticeBoardItem();
+        noticeBoardItem3.setTitle("Apartment meeting");
+        noticeBoardItem3.setMessage("This Friday we have a meeting in the apartment. Please attend all");
+        noticeBoardItems.add(noticeBoardItem3);
+        //}
         return noticeBoardItems;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Utility.navigateDashBoardFragment(new NoticeBoardDetailFragment(),
-                NoticeBoardDetailFragment.TAG, null, mParent);
+
     }
 }

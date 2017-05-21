@@ -6,10 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
+import com.zerohour.model.NoticeBoardItem;
+import com.zerohour.utils.Constants;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -18,14 +23,22 @@ import butterknife.ButterKnife;
 public class NoticeBoardDetailFragment extends Fragment {
 
     public static final String TAG = NoticeBoardDetailFragment.class.getSimpleName();
-    private MainActivity mParent;
+    private DashBoardActivity mParent;
     private View view;
 
+    private NoticeBoardItem noticeBoardItem;
+
+
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mParent = (MainActivity) getActivity();
+        mParent = (DashBoardActivity) getActivity();
+        noticeBoardItem = (NoticeBoardItem) getArguments().getSerializable(Constants.INVITE_HISTORY);
     }
 
 
@@ -38,7 +51,8 @@ public class NoticeBoardDetailFragment extends Fragment {
     }
 
     private void initUI() {
-
+        tvTitle.setText(noticeBoardItem.getTitle());
+        tvMessage.setText(noticeBoardItem.getMessage());
     }
 
 

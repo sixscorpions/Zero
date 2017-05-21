@@ -2,6 +2,7 @@ package com.zerohour.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import com.zerohour.DashBoardActivity;
 import com.zerohour.MainActivity;
 import com.zerohour.R;
+import com.zerohour.fragments.NoticeBoardDetailFragment;
 import com.zerohour.model.NoticeBoardItem;
+import com.zerohour.utils.Constants;
 import com.zerohour.utils.Utility;
 
 import java.util.ArrayList;
@@ -25,12 +28,14 @@ public class NoticeBoardItemAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
     private ArrayList<NoticeBoardItem> noticeBoardItems;
     private Typeface mMaterialTypeface;
+    private DashBoardActivity mParent;
 
 
     public NoticeBoardItemAdapter(DashBoardActivity mParent, ArrayList<NoticeBoardItem> noticeBoardItems) {
         mLayoutInflater = (LayoutInflater) mParent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMaterialTypeface = Utility.getMaterialIconsRegular(mParent);
         this.noticeBoardItems = noticeBoardItems;
+        this.mParent = mParent;
     }
 
     @Override
@@ -49,7 +54,7 @@ public class NoticeBoardItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         NoticeItemHolder mNoticeItemHolder = null;
 
@@ -68,6 +73,16 @@ public class NoticeBoardItemAdapter extends BaseAdapter {
 
         mNoticeItemHolder.tv_title.setText("" + noticeBoardItem.getTitle());
         mNoticeItemHolder.tv_message.setText("" + noticeBoardItem.getMessage());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constants.INVITE_HISTORY, noticeBoardItems.get(position));
+                Utility.navigateDashBoardFragment(new NoticeBoardDetailFragment(),
+                        NoticeBoardDetailFragment.TAG, bundle, mParent);
+            }
+        });
 
         return convertView;
     }

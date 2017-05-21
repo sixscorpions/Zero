@@ -1,10 +1,12 @@
 package com.zerohour.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Shankar on 5/9/2017.
  */
 
-public class NoticeBoardItem {
+public class NoticeBoardItem implements Serializable {
     private String title;
     private String message;
 
