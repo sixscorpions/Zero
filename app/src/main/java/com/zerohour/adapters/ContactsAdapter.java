@@ -18,6 +18,7 @@ import com.zerohour.R;
 import com.zerohour.fragments.InviteHistoryDetailFragment;
 import com.zerohour.fragments.PartyInviteFragment;
 import com.zerohour.model.Contact;
+import com.zerohour.utils.Utility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -158,17 +159,20 @@ public class ContactsAdapter extends SearchablePinnedHeaderListViewAdapter<Conta
                                 if (mTag.equalsIgnoreCase(InviteHistoryDetailFragment.TAG)) {
                                     InviteHistoryDetailFragment.contactsarray.put(jobj);
                                     if (InviteHistoryDetailFragment.contactsListModel.size() > 0) {
-                                        if (!InviteHistoryDetailFragment.contactsListModel.contains(onlynumber))
-                                            InviteHistoryDetailFragment.contactsListModel.add(onlynumber);
+                                        if (!InviteHistoryDetailFragment.contactsListModel.contains(onlynumber) &&
+                                                !InviteHistoryDetailFragment.contactsListModel.contains(name))
+                                            InviteHistoryDetailFragment.contactsListModel.add(
+                                                    Utility.isValueNullOrEmpty(name) ? onlynumber : name);
                                     } else
-                                        InviteHistoryDetailFragment.contactsListModel.add(onlynumber);
+                                        InviteHistoryDetailFragment.contactsListModel.add(
+                                                Utility.isValueNullOrEmpty(name) ? onlynumber : name);
                                 } else {
                                     PartyInviteFragment.contactsarray.put(jobj);
                                     if (PartyInviteFragment.contactsListModel.size() > 0) {
-                                        if (!PartyInviteFragment.contactsListModel.contains(onlynumber))
-                                            PartyInviteFragment.contactsListModel.add(onlynumber);
+                                        if (!PartyInviteFragment.contactsListModel.contains(onlynumber) && !PartyInviteFragment.contactsListModel.contains(name))
+                                            PartyInviteFragment.contactsListModel.add(Utility.isValueNullOrEmpty(name) ? onlynumber : name);
                                     } else
-                                        PartyInviteFragment.contactsListModel.add(onlynumber);
+                                        PartyInviteFragment.contactsListModel.add(Utility.isValueNullOrEmpty(name) ? onlynumber : name);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
